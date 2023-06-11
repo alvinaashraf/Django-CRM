@@ -1,0 +1,12 @@
+{% extends 'base.html'%} {% block content%}
+<h1>ADD A RECORD</h1>
+<div class="col-md-6 offset-md-3 mt-3">
+  <form method="POST" action="{% url 'add_record'%}">{% csrf_token %}
+
+{{form.as_p}}
+
+    
+    <button type="submit" class="btn btn-primary">Add a Record </button>
+  </forms>
+</div>
+{% endblock%}

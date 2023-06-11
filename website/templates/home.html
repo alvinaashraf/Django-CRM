@@ -1,7 +1,6 @@
 {% extends 'base.html'%} {% block content%}
 <!-- meesage content  -->
 
-<div class="col-md-6 offset-md-3 mt-3">
    {%if messages %}
 {% for message in messages%}
 <div class="alert alert-warning alert-dismissible fade show" role="alert">
@@ -14,7 +13,55 @@
     <!-- check if user is logged in  -->
 
   {% if user.is_authenticated %}
-  <h1>Hello user </h1>
+      <!-- displaying records start  -->
+
+  <h1> Loggedin User is Only viewing the records </h1>
+
+  
+<table class="table  table-striped  table-hover   table-bordered">
+  <thead>
+   
+    <tr>
+      <th scope="col" class="table-dark">ID</th>
+      <th scope="col" class="table-dark">NAME</th>
+      <th scope="col" class="table-dark">ADDRESS</th>
+      <th scope="col" class="table-dark">CITY</th>
+      <th scope="col" class="table-dark">STATE</th>
+      <th scope="col" class="table-dark">EMAIL</th>
+      <th scope="col" class="table-dark">PHONE</th>
+            <th scope="col" class="table-dark">CREATED AT</th>
+
+
+    </tr>
+  </thead>
+  <tbody>
+   
+    <tr>
+       
+ {% if record %}
+
+  {% for records in record %}
+      <th scope="row"> <a href="{% url 'record_detail' records.id %}"> {{records.id}} </a></th>
+      <td>{{records.first_name}}  {{records.last_name}}  </td>
+      <td>{{records.address}}</td>
+      <td>{{records.city}}</td>
+            <td>{{records.state}}</td>
+      <td>{{records.email}}</td>
+      <td>{{records.phone}}</td>
+      <td>{{records.created_at}}</td>
+
+    </tr>
+    
+    {%endfor%}
+
+{%endif%}
+  </tbody>
+</table>
+
+  
+
+  <!-- displaying records end  -->
+
   {% else %}
     <h1>LOGIN</h1>
    <!--else show the login form-->
@@ -40,4 +87,3 @@
   {% endif %}
 </div>
   {% endblock%}
-</div>
